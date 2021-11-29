@@ -16,6 +16,7 @@
 
 use AuthenticationProvider\FacebookAuth;
 use AuthenticationProvider\MediaWikiAuth;
+use AuthenticationProvider\GithubAuth;
 use Exception\InvalidAuthProviderClassException;
 use Exception\UnknownAuthProviderException;
 use MediaWiki\MediaWikiServices;
@@ -26,7 +27,8 @@ use MediaWiki\MediaWikiServices;
 class WSOAuth extends AuthProviderFramework {
 	const DEFAULT_AUTH_PROVIDERS = [
 		"mediawiki" => MediaWikiAuth::class,
-		"facebook" => FacebookAuth::class
+		"facebook" => FacebookAuth::class,
+		"github" => GithubAuth::class
 	];
 
 	/**
