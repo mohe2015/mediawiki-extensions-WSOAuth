@@ -43,9 +43,7 @@ class GithubAuth implements \AuthProvider {
 	 * @inheritDoc
 	 */
 	public function login( &$key, &$secret, &$auth_url ) {
-		$auth_url = $this->provider->getAuthorizationUrl( [
-			'scope' => [ 'email' ]
-		] );
+		$auth_url = $this->provider->getAuthorizationUrl();
 
 		$secret = $this->provider->getState();
 
@@ -78,11 +76,10 @@ class GithubAuth implements \AuthProvider {
 			$user = $this->provider->getResourceOwner( $token );
 
 			return [
-				'name' => $user->getId(),
-				'realname' => $user->getName(),
-				'email' => $user->getEmail()
+				'name' => $user->getNickname(),
 			];
 		} catch ( \Exception $e ) {
+			wfDebugLog( "WSOAuth", $e->getMessage() );
 			return false;
 		}
 	}
