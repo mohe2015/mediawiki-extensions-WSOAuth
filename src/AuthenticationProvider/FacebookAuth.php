@@ -84,6 +84,7 @@ class FacebookAuth implements \AuthProvider {
 				'email' => $user->getEmail()
 			];
 		} catch ( \Exception $e ) {
+			wfDebugLog( "WSOAuth", $e->getMessage() );
 			return false;
 		}
 	}

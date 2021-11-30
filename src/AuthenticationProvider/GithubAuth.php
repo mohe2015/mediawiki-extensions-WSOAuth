@@ -79,6 +79,7 @@ class GithubAuth implements \AuthProvider {
 				'name' => $user->getNickname(),
 			];
 		} catch ( \Exception $e ) {
+			wfDebugLog( "WSOAuth", $e->getMessage() );
 			return false;
 		}
 	}
