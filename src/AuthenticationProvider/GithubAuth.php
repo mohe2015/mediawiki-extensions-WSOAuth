@@ -43,7 +43,9 @@ class GithubAuth implements \AuthProvider {
 	 * @inheritDoc
 	 */
 	public function login( &$key, &$secret, &$auth_url ) {
-		$auth_url = $this->provider->getAuthorizationUrl();
+		$auth_url = $this->provider->getAuthorizationUrl( [
+			'scope' => [ 'user:email' ]
+		] );
 
 		$secret = $this->provider->getState();
 
@@ -77,6 +79,8 @@ class GithubAuth implements \AuthProvider {
 
 			return [
 				'name' => $user->getNickname(),
+				'realname' => $user->getName(),
+				'email' => $user->getEmail()
 			];
 		} catch ( \Exception $e ) {
 			return false;
