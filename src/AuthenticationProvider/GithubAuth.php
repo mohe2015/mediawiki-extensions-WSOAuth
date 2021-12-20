@@ -76,7 +76,7 @@ class GithubAuth implements \AuthProvider {
 			$user = $this->provider->getResourceOwner( $token );
 
 			return [
-				'name' => $user->getNickname(),
+				'name' => ucfirst($user->getNickname()),
 			];
 		} catch ( \Exception $e ) {
 			wfDebugLog( "WSOAuth", $e->getMessage() );
